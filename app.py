@@ -6,6 +6,7 @@ logger.basicConfig(level="DEBUG")
 
 app = Flask(__name__)
 CORS(app)
+app.config["json_file_path"] = "D:\my_learning\stk_dashboard_backend\Json"
 
 if __name__ == '__main__':
     from api import *

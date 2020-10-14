@@ -9,7 +9,7 @@ import pandas as pd
 class BankNifty(Resource):
     def get(self):
         logger.debug('Inside Bank nifty get method')
-        with open('D:\my_learning\stk_dashboard_backend\Json\CONFIG_BANK_NIFTY.json') as f:
+        with open(app.config["json_file_path"] + '\CONFIG_BANK_NIFTY.json') as f:
             data = json.load(f)
             return data
 
@@ -18,11 +18,11 @@ class BankNifty(Resource):
         json_request = request.get_json()
         logger.debug("this is the json", json_request)
         logger.debug("CONFIG_BANK_NIFTY", json_request)
-        with open('D:\my_learning\stk_dashboard_backend\Json\CONFIG_BANK_NIFTY.json') as f:
+        with open(app.config["json_file_path"] + '\CONFIG_BANK_NIFTY.json') as f:
             data = json.load(f)
         for value in json_request:
             data[value] = json_request[value]
-        jsonFile = open("D:\my_learning\stk_dashboard_backend\Json\CONFIG_BANK_NIFTY.json", "w+")
+        jsonFile = open(app.config["json_file_path"] + "\CONFIG_BANK_NIFTY.json", "w+")
         jsonFile.write(json.dumps(data))
         jsonFile.close()
 

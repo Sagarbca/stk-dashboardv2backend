@@ -9,7 +9,7 @@ import pandas as pd
 class Menu(Resource):
     def get(self):
         logger.debug('Inside crude get method')
-        with open('D:\my_learning\stk_dashboard_backend\Json\menu.json') as f:
+        with open(app.config["json_file_path"] + '\menu.json') as f:
             data = json.load(f)
             return data
 

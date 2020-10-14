@@ -9,7 +9,7 @@ import pandas as pd
 class SilverMicro(Resource):
     def get(self):
         logger.debug('Inside Silver Micro get method')
-        with open('D:\my_learning\stk_dashboard_backend\Json\CONFIG_SILVER_MICRO.json') as f:
+        with open(app.config["json_file_path"] + '\CONFIG_SILVER_MICRO.json') as f:
             data = json.load(f)
             return data
 
@@ -19,11 +19,11 @@ class SilverMicro(Resource):
         json_request = request.get_json()
         logger.debug("this is the json", json_request)
         logger.debug("CONFIG_SILVER_MICRO", json_request)
-        with open('D:\my_learning\stk_dashboard_backend\Json\CONFIG_SILVER_MICRO.json') as f:
+        with open(app.config["json_file_path"] + '\CONFIG_SILVER_MICRO.json') as f:
             data = json.load(f)
         for value in json_request:
             data[value] = json_request[value]
-        jsonFile = open("D:\my_learning\stk_dashboard_backend\Json\CONFIG_SILVER_MICRO.json", "w+")
+        jsonFile = open(app.config["json_file_path"] + "\CONFIG_SILVER_MICRO.json", "w+")
         jsonFile.write(json.dumps(data))
         jsonFile.close()
 
